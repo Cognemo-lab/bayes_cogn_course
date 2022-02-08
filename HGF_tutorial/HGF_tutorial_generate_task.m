@@ -1,4 +1,4 @@
-%--------------------------------------------------------------------------
+ %--------------------------------------------------------------------------
 % The purpose of this tutorial is to show you the first steps to enable you
 % to use the HGF and it consists of several parts:
 %
