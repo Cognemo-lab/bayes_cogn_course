@@ -9,20 +9,23 @@ function y = tapas_softmax_binary_sim(r, infStates, p)
 % (either version 3 or, at your option, any later version). For further details, see the file
 % COPYING or <http://www.gnu.org/licenses/>.
 
-mu = infStates;
+pop = 1; % Default: predictions
+
+% Inverse decision temperature beta
 be = p;
 
-if size(mu,2) == 1
-    if ~any(mu<0) && ~any(mu>1)
-        % Apply the unit-square sigmoid to the inferred states
-        prob = tapas_sgm(be.*(2.*mu-1),1);
-    else
-        error('infStates incompatible with tapas_softmax_binary observation model.')
-    end
-else
-    % Apply the unit-square sigmoid to the inferred states
-    prob = tapas_sgm(be.*(mu(:,1)-mu(:,2)),1);
-end
+% Assumed structure of infStates:
+% dim 1: time (ie, input sequence number)
+% dim 2: HGF level
+% dim 3: 1: muhat, 2: sahat, 3: mu, 4: sa
+
+% Belief trajectories at 1st level
+states = squeeze(infStates(:,1,pop));
+
+% Apply the logistic sigmoid to the inferred states
+prob = tapas_sgm(be.*(2.*states-1),1);
+
+% Simulate
 y = binornd(1, prob);
 
-return;
+end

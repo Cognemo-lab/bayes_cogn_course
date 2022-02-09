@@ -24,7 +24,7 @@ figure(...
     'Name', 'HGF trajectories');
 
 % Time axis
-if size(r.u,2) > 1
+if size(r.u,4) > 1
     t = r.u(:,end)';
 else
     t = ones(1,size(r.u,1));
@@ -37,7 +37,7 @@ ts = [0, ts];
 try
     l = r.c_prc.n_levels;
 catch
-    l = (length(r.p_prc.p)+1)/5;
+    l = (length(r.p_prc.p)+1)/6;
 end
 
 % Upper levels
