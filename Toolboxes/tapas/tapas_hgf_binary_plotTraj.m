@@ -20,7 +20,7 @@ ploty = true;
 figure('units','normalized','outerposition',[0 0 .96 1],'Name', 'HGF trajectories');
 
 % Time axis
-if size(r.u,2) > 1
+if size(r.u,4) > 1
     t = r.u(:,end)';
 else
     t = ones(1,size(r.u,1));
@@ -84,7 +84,7 @@ if (ploty == true) && ~isempty(find(strcmp(fieldnames(r),'y'))) && ~isempty(r.y)
     axis([0 ts(end) -0.15 1.15]);
 else
     title(['Input u (green) and posterior expectation of input s(\mu_2) ', ...
-           '(red) for \omega=', num2str(r.p_prc.om(2:end)), ', \vartheta=', num2str(r.p_prc.th)], ...
+           '(red) for \omega=', num2str(r.p_prc.om(2)), ', \vartheta=', num2str(r.p_prc.om(3))], ...
       'FontWeight', 'bold');
     ylabel('u, s(\mu_2)');
     axis([0 ts(end) -0.1 1.1]);
