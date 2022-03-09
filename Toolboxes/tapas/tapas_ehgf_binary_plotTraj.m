@@ -24,7 +24,7 @@ figure(...
     'Name', 'HGF trajectories');
 
 % Time axis
-if size(r.u,2) > 1
+if size(r.u,4) > 1
     t = r.u(:,end)';
 else
     t = ones(1,size(r.u,1));
