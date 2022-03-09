@@ -27,12 +27,6 @@ x(find(tp==0)) = mu1hat(find(tp==0));
 % Apply the logistic sigmoid to the inferred beliefs
 prob = tapas_sgm(be.*(2.*x-1),1);
 
-% Initialize random number generator
-if isnan(r.c_sim.seed)
-    rng('shuffle');
-else
-    rng(r.c_sim.seed);
-end
 
 % Simulate
 y = binornd(1, prob);
