@@ -92,7 +92,7 @@ B{1}(:,:,4) = [0 0 0 0 0 0 0 0;
 %--------------------------------------------------------------------------
 cs =  2; % safe option
 cr =  4; % risky option reward
-cn = -2; % risky option no reward
+cn =  -2; % risky option no reward
 
 C{1}  = [0 cs cr cn 0 0]';
 
@@ -209,11 +209,11 @@ Z_spm_MDP_plot_task(MDP); pause(0.5);
 
 % set up and simulate behavior
 %--------------------------------------------------------------------------
-n          = 32;              % number of trials
-[MDP(i).s] = deal(1);         % make all trials with 75% reward prob.
-
-MDP        = mdp;             % assign mdp 
-[MDP(1:n)] = deal(MDP);       % restructure mdp
+n          = 32;               % number of trials
+i          = true(ones(1,n));  % make the states over trials uniform
+MDP        = mdp;              % assign mdp 
+[MDP(1:n)] = deal(MDP);        % restructure mdp
+[MDP(i).s] = deal(1);          % make all trials with 75% reward prob.
  
 [MDP(1:n).d]  = deal(mdp.D);  % indicate to update d after every trial
 
